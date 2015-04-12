@@ -3,4 +3,6 @@
   sudo: yes
   roles:
      # - nginx
-     - nodejs
+     # - nodejs
+     # - mongodb
+     - { role: datadog, dd_api_key: '' }
