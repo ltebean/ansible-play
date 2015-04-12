@@ -6,3 +6,9 @@
 
 - name: start mongodb
   service: name=mongod state=started
+
+- name: copy datadog config file
+  template: src=mongo.datadog.yaml dest=/etc/dd-agent/conf.d/mongo.yaml
+  when: use_datadog
+  notify:
+    - restart datadog

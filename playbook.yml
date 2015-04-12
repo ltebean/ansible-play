@@ -1,8 +1,10 @@
-- hosts: ec2
+- hosts: do
   remote_user: root
   sudo: yes
+  vars:
+    use_datadog: true
   roles:
-     # - nginx
-     # - nodejs
-     # - mongodb
-     - { role: datadog, dd_api_key: '' }
+     - { role: datadog, dd_api_key: '', when: use_datadog }
+     - { role: nginx, use_datadog: use_datadog }
+     - { role: nodejs }
+     - { role: mongodb, use_datadog: use_datadog }

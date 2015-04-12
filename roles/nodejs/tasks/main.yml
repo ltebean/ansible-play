@@ -1,2 +1,11 @@
+- name: prepare install node.js
+  raw: curl -sL https://rpm.nodesource.com/setup | bash -
+
 - name: install node.js
-  command: curl -L https://npmjs.org/install.sh | sh
+  yum: name=nodejs state=latest
+
+- name: install npm
+  raw: curl -L https://npmjs.org/install.sh | sh
+
+- name: install forever globally
+  npm: name=forever global=yes

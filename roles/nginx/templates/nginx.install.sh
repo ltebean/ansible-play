@@ -1,4 +1,5 @@
 # yum install gcc gcc-c++ pcre pcre-devel openssl openssl-devel zlib zlib-devel
+mkdir -p /etc/nginx
 cd /tmp
 mkdir nginx-install
 cd nginx-install
