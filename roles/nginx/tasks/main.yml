@@ -1,0 +1,22 @@
+- name: copy nginx install script
+  template: src=nginx.install.sh dest=/tmp/nginx.install.sh mode=755
+
+- name: install nginx
+  raw: sh /tmp/nginx.install.sh
+
+- name: add nginx init.d
+  template: src=nginx.init.d dest=/etc/init.d/nginx mode=755
+
+- name: systemctl daemon-reload
+  command: systemctl daemon-reload
+
+- name: copy nginx.conf
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: start nginx
+  service: name=nginx state=restarted
+
+
+ 
+# - name: install datadog agent
+#   raw: DD_API_KEY=38ee868bed1941608334c9a42b83817c bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
