@@ -39,6 +39,6 @@
 
 - name: copy datadog config file
   template: src=nginx.datadog.yaml dest=/etc/dd-agent/conf.d/nginx.yaml
-  when: use_datadog
+  when: use_datadog|bool
   notify:
     - restart datadog

@@ -1,0 +1,16 @@
+- hosts: linode
+  remote_user: root
+  sudo: yes
+  tasks:
+  - name: clone repo
+    git: repo=https://github.com/novel-design/novel-design-server.git dest=~/novel-design-server
+
+  - name: install packages based on package.json.
+    npm: path=~/novel-design-server
+
+  - name: forever stop all
+    command: forever stopall
+
+  - name: start the app
+    command: forever start ~/novel-design-server/index.js
+

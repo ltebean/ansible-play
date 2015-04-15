@@ -1,5 +1,5 @@
 [ec2]
 52.8.28.123 ansible_ssh_user=ec2-user
 
-[do]
-45.55.132.62 ansible_ssh_user=root
+[linode]
+45.33.91.50 ansible_ssh_user=root

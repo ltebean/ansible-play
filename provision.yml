@@ -1,0 +1,12 @@
+- hosts: linode
+  remote_user: root
+  sudo: yes
+  vars:
+    use_datadog: True
+  roles:
+     # - { role: git }
+     # - { role: datadog, dd_api_key: '38ee868bed1941608334c9a42b83817c', when: use_datadog }
+     # - { role: nginx, use_datadog: use_datadog }
+     # - { role: nodejs }
+     # - { role: mongodb, use_datadog: use_datadog }
+     - { role: redis, use_datadog: use_datadog }
