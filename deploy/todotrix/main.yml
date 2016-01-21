@@ -1,0 +1,22 @@
+- hosts: linode
+  remote_user: root
+  sudo: yes
+  tasks:
+  - name: remove old repo
+    raw: rm -rf ~/repos/Todotrix-Website
+  
+  - name: clone repo
+    git: repo=https://git.oschina.net/ltebean/Todotrix-Website.git dest=~/repos/Todotrix-Website
+
+  - name: install packages based on package.json
+    npm: path=~/repos/Todotrix-Website
+
+  # - name: forever stop all
+  #   command: forever stopall
+
+  # - name: start the app
+  #   command: forever start ~/repos/Todotrix-Website/index.js
+
+  - name: restart all
+    command: forever restartall
+

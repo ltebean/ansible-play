@@ -1,0 +1,11 @@
+- name: install the latest version of couchdb
+  yum: name=couchdb state=latest
+
+- name: copy config file
+  template: src=local.ini dest=/etc/couchdb/local.ini
+
+- name: copy datadog config file
+  template: src=couchdb.datadog.yaml dest=/etc/dd-agent/conf.d/couch.yaml
+  when: use_datadog
+  notify:
+    - restart datadog

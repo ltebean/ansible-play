@@ -1,0 +1,24 @@
+- hosts: linode
+  remote_user: root
+  sudo: yes
+  tasks:
+  - name: remove old repo
+    raw: rm -rf ~/repos/novel-design-server
+  
+  - name: clone repo
+    git: repo=https://github.com/ltebean/novel-design-server.git dest=~/repos/novel-design-server
+
+  - name: install packages based on package.json
+    npm: path=~/repos/novel-design-server
+
+  - name: copy config file
+    template: src=./config.json dest=~/repos/novel-design-server mode=755
+
+  # - name: forever stop all
+  #   command: forever stopall
+
+  # - name: start the app
+  #   command: forever start ~/repos/novel-design-server/index.js
+
+  - name: restart all
+    command: forever restartall
